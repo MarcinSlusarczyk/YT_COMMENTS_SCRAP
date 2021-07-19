@@ -1,10 +1,9 @@
-from selenium import webdriver
+import string
 import time
 import re
-import csv
-import string
 import pandas as pd
-
+import csv
+from selenium import webdriver
 URL = input("Wpisz link do filmu by pobrać komentarze:\n")
 driver = webdriver.Chrome()
 driver.get(URL)
