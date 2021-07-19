@@ -1,9 +1,10 @@
-import string
+from selenium import webdriver
 import time
 import re
-import pandas as pd
 import csv
-from selenium import webdriver
+import string
+import pandas as pd
+
 URL = input("Wpisz link do filmu by pobrać komentarze:\n")
 driver = webdriver.Chrome()
 driver.get(URL)
@@ -14,14 +15,14 @@ acceptTerms.click()
 
 time.sleep(3)
  
-video_titles = driver.find_elements_by_class_name('title')
-for title in video_titles:
+movies = driver.find_elements_by_class_name('title')
+for title in movies:
     print(title.text)
     tytul = title.text
 
 name = driver.find_element_by_xpath('/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[5]/div[1]/div/div[9]/div[2]/ytd-video-secondary-info-renderer/div/div/ytd-video-owner-renderer/div[1]/ytd-channel-name/div/div/yt-formatted-string/a').text
-comment_section = driver.find_element_by_xpath('//*[@id="comments"]')
-driver.execute_script("arguments[0].scrollIntoView();", comment_section)
+comments = driver.find_element_by_xpath('//*[@id="comments"]')
+driver.execute_script("arguments[0].scrollIntoView();", comments)
 time.sleep(9)
 last_height = driver.execute_script("return document.documentElement.scrollHeight")
 while True:
